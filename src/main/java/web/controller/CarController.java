@@ -22,6 +22,9 @@ public class CarController {
     @GetMapping("/cars")
     public String numberOfCars(@RequestParam(value = "count", defaultValue = "5") int count, Model model) {
         List<Car> cars;
+        if (count > 5) {
+            count = 5;
+        }
         cars = carDAO.getCars(count);
         model.addAttribute("cars", cars);
         return "cars";
